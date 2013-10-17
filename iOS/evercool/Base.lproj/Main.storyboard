@@ -68,14 +68,24 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ve4-ra-Ox9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="cS2-nB-RT5">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.50270690474805302" green="0.59336054267279814" blue="0.90198501275510201" alpha="0.93000000000000005" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.12395091674190295" green="0.9330850105006776" blue="0.93877551020408168" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kth-eq-yQh">
+                                        <rect key="frame" x="214" y="100" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="0.078431372550000003" green="0.65490196079999996" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="evercoolSwitchChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="ud8-lJ-Jum"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
                                 <color key="backgroundColor" red="0.27719543084100995" green="0.99114054603450241" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="cS2-nB-RT5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.50270690474805302" green="0.59336054267279814" blue="0.90198501275510201" alpha="0.93000000000000005" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.12395091674190295" green="0.9330850105006776" blue="0.93877551020408168" alpha="0.0" colorSpace="calibratedRGB"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQE-tS-wpm" customClass="FUIButton">
                                 <rect key="frame" x="178" y="494" width="120" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -97,17 +107,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onTurnACOn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5uZ-bM-rrl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huk-Um-46K">
-                                <rect key="frame" x="131" y="79" width="58" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Smalla">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onSmalla:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XHq-k9-tc0"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Weather" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoZ-f6-L6f">
@@ -141,12 +140,20 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="P9M-F5-DH0"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Evercool?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYG-7B-MXX">
+                                <rect key="frame" x="59" y="98" width="150" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="7jY-qB-4J6"/>
                     <connections>
                         <outlet property="currentWeatherLabel" destination="Zuw-Ka-2Zv" id="fUs-am-a7k"/>
+                        <outlet property="evercoolSwitch" destination="kth-eq-yQh" id="aIz-lj-ChF"/>
                         <outlet property="thresholdTextField" destination="P4Y-8m-VS9" id="fNn-hM-Miy"/>
                         <outlet property="turnOffButton" destination="bQE-tS-wpm" id="1re-K5-8FE"/>
                         <outlet property="turnOnButton" destination="CMb-Wd-Vup" id="gkx-9p-bIS"/>

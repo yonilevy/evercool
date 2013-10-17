@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *thresholdTextField;
 @property (weak, nonatomic) IBOutlet FUIButton *turnOnButton;
 @property (weak, nonatomic) IBOutlet FUIButton *turnOffButton;
+@property (weak, nonatomic) IBOutlet UISwitch *evercoolSwitch;
 
 @end
 
@@ -115,16 +116,6 @@
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
-- (IBAction)onSmalla:(id)sender
-{
-    CLLocationCoordinate2D coords = [[ECConfiguration instance] getHomeLocation];
-    
-    CLCircularRegion *region = [self registerGeoFenceWithLon:coords.longitude lat:coords.latitude];
-    if (region == nil) {
-        [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"No Geofencing for you!"];
-    }
-}
-
 - (IBAction)onTurnACOn:(id)sender
 {
     [ECServerApi turnACOn];
@@ -143,14 +134,19 @@
 
     self.locationManager.delegate = self;
 
+    CLCircularRegion *region = [self getRegionForLong:lon lat:lat];
+    [self.locationManager startMonitoringForRegion:region];
+
+    return region;
+}
+
+- (CLCircularRegion *)getRegionForLong:(double)lon lat:(double)lat {
     CLLocationDistance RADIUS_IN_METERS = 10.0;
     NSString *HOME_IDENTIFIER = @"home";
     CLCircularRegion *region = [[CLCircularRegion alloc]
             initWithCenter:CLLocationCoordinate2DMake(lat, lon)
                     radius:RADIUS_IN_METERS
                 identifier:HOME_IDENTIFIER];
-    [self.locationManager startMonitoringForRegion:region];
-
     return region;
 }
 
@@ -205,6 +201,18 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+- (IBAction)evercoolSwitchChanged:(id)sender
+{
+    CLLocationCoordinate2D coords = [[ECConfiguration instance] getHomeLocation];
+    if (self.evercoolSwitch.on) {
+        CLCircularRegion *region = [self registerGeoFenceWithLon:coords.longitude lat:coords.latitude];
+        if (region == nil) {
+            [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"No Geofencing for you!"];
+        }
+    } else {
+        [self.locationManager stopMonitoringForRegion:[self getRegionForLong:coords.longitude lat:coords.latitude]];
+    }
 }
 
 @end
