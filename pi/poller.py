@@ -1,15 +1,18 @@
 import requests
 import time
+import os
 
 BASE_URL = 'http://infinite-fortress-1821.herokuapp.com/'
 
 
 def turn_on():
-    print 'should turn AC on'
+    print 'turning AC on'
+    os.system('irsend SEND_ONCE /home/pi/lircd.conf BTN_3')
 
 
 def turn_off():
-    print 'should turn AC off'
+    print 'turning AC off'
+    os.system('irsend SEND_ONCE /home/pi/lircd.conf BTN_0')
 
 
 def poll():
