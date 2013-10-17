@@ -28,12 +28,6 @@
 
 @implementation ECViewController
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,7 +39,6 @@
     [self superButton:self.turnOnButton];
     [self superButton:self.turnOffButton];
 
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)superButton:(FUIButton *)button
@@ -88,12 +81,20 @@
                        action:@selector(setHome)];
     self.navigationItem.rightBarButtonItem = barButton;
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
+
 
 - (void)setHome
 {
