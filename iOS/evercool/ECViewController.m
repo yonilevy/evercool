@@ -54,8 +54,6 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     CLCircularRegion *region = [self registerGeoFenceWithLon:lon lat:lat];
     if (region == nil) {
         [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"No Geofencing for you!"];
-    } else {
-        [self.locationManager requestStateForRegion:region];
     }
 }
 
@@ -86,14 +84,6 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     [self.locationManager startMonitoringForRegion:region];
 
     return region;
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-      didDetermineState:(CLRegionState)state
-              forRegion:(CLRegion *)region
-{
-    [ECUtils displayNotificationAlertWithTitle:@"Notice"
-                                       message:[NSString stringWithFormat:@"region state: %d!", state]];
 }
 
 - (void)askServerToTurnOn
