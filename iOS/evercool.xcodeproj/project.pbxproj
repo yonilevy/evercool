@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3097E1343B9E0E69385F4ED5 /* ECConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097E3ED290D3E1A74963704 /* ECConfiguration.m */; };
 		38AF51FD356339A507B258E6 /* ECUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AF5B790454F2C4E2E4B88E /* ECUtils.m */; };
 		38AF547F9214A9F27A2BF214 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF5232CC97EA51C6C855FC /* Icon@2x.png */; };
 		38AF579F7C7118D5DCDA1F06 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF532587BF939D51C3C7D2 /* Icon.png */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3097E0228255254877B06950 /* ECConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECConfiguration.h; sourceTree = "<group>"; };
+		3097E3ED290D3E1A74963704 /* ECConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECConfiguration.m; sourceTree = "<group>"; };
 		38AF5232CC97EA51C6C855FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		38AF532587BF939D51C3C7D2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		38AF5B790454F2C4E2E4B88E /* ECUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECUtils.m; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				38AF5D9784BB234E7D6BFD33 /* ECUtils.h */,
 				CC9631CE1810333E00AC196F /* ECSetHomeViewController.h */,
 				CC9631CF1810333E00AC196F /* ECSetHomeViewController.m */,
+				3097E3ED290D3E1A74963704 /* ECConfiguration.m */,
+				3097E0228255254877B06950 /* ECConfiguration.h */,
 			);
 			path = evercool;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				CC9631D01810333E00AC196F /* ECSetHomeViewController.m in Sources */,
 				E94485D3180FC8D0002C4719 /* main.m in Sources */,
 				38AF51FD356339A507B258E6 /* ECUtils.m in Sources */,
+				3097E1343B9E0E69385F4ED5 /* ECConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

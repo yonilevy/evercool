@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface ECSetHomeViewController : UIViewController
+@interface ECSetHomeViewController : UIViewController <CLLocationManagerDelegate>
 
+@property(nonatomic, strong) CLLocationManager *locationManager;
+@property(nonatomic, strong) UILongPressGestureRecognizer *lpgr;
+@property(nonatomic) CLLocationDegrees eclong;
+@property(nonatomic) CLLocationDegrees eclat;
+@property(nonatomic, strong) MKPointAnnotation *homeLocationAnnotation;
 @end
