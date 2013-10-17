@@ -8,6 +8,7 @@ Evercool - an iPhone app that knows when you're on your way home,
 checks the weather, and turns on the AC automatically for you at just the right temperature.
 
 It works by having a raspberry pi connected to an IR LED which can control your AC.
+![](https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/13432/45393/LZixVr0OAKcL3gc/upload.png)
 
 ## What you need
 * RaspberryPi with LIRC compiled
