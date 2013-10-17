@@ -17,11 +17,15 @@ def turn_off():
 
 def poll():
     while True:
-        command = requests.get(BASE_URL + 'pop_command').content
-        if command == 'TURN_ON':
-            turn_on()
-        elif command == 'TURN_OFF':
-            turn_off()
+        try:
+            command = requests.get(BASE_URL + 'pop_command').content
+            if command == 'TURN_ON':
+                turn_on()
+            elif command == 'TURN_OFF':
+                turn_off()
+        except:
+            print "had an exception, continuing"
+            pass
         time.sleep(0.5)
 
 
