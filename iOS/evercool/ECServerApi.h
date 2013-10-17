@@ -6,10 +6,10 @@
 
 
 #import <Foundation/Foundation.h>
-
+#import <MapKit/MapKit.h>
 
 @interface ECServerApi : NSObject
 + (void)turnACOn;
 + (void)turnACOff;
-+ (NSString *)getCurrentWeatherWithLat:(NSString *)lat lon:(NSString *)lon;
++ (NSString *)getCurrentWeatherWithLat:(CLLocationDegrees)lat lon:(CLLocationDegrees)lon;
 @end

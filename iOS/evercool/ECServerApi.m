@@ -7,6 +7,8 @@
 
 #import "ECServerApi.h"
 
+#import <MapKit/MapKit.h>
+
 @implementation ECServerApi
 
 static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
@@ -21,9 +23,9 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     [ECServerApi doGet:[ECServerApi serverUrl:@"turn_off"]];
 }
 
-+ (NSString *)getCurrentWeatherWithLat:(NSString *)lat lon:(NSString *)lon
++ (NSString *)getCurrentWeatherWithLat:(CLLocationDegrees)lat lon:(CLLocationDegrees)lon
 {
-    NSString *urlPath = [NSString stringWithFormat:@"current_weather?lat=%@&lon=%@", lat, lon];
+    NSString *urlPath = [NSString stringWithFormat:@"current_weather?lat=%f&lon=%f", lat, lon];
     return [ECServerApi doGet:[ECServerApi serverUrl:urlPath]];
 }
 

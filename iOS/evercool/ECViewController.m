@@ -15,8 +15,6 @@
 
 @interface ECViewController () <CLLocationManagerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *lonTextField;
-@property (weak, nonatomic) IBOutlet UITextField *latTextField;
 @property (weak, nonatomic) IBOutlet UILabel *currentWeatherLabel;
 @property (weak, nonatomic) IBOutlet UITextField *thresholdTextField;
 
@@ -40,7 +38,9 @@
 
 - (void)updateCurrentWeather
 {
-    NSString *currentWeather = [ECServerApi getCurrentWeatherWithLat:self.latTextField.text lon:self.lonTextField.text];
+    CLLocationCoordinate2D coords = [[ECConfiguration instance] getHomeLocation];
+    NSString *currentWeather = [ECServerApi getCurrentWeatherWithLat:coords.latitude
+                                                                 lon:coords.longitude];
 
     self.currentWeatherLabel.text = [currentWeather stringByAppendingString:@"°"];
     NSLog(currentWeather);
@@ -49,20 +49,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self setHomeLocation];
     [self updateCurrentWeather];
 }
-
-
-- (void)setHomeLocation
-{
-    if ([[ECConfiguration instance] hasHome]) {
-        CLLocationCoordinate2D homeLocation = [[ECConfiguration instance] getHomeLocation];
-        self.latTextField.text = [NSString stringWithFormat:@"%f", homeLocation.latitude];
-        self.lonTextField.text = [NSString stringWithFormat:@"%f", homeLocation.longitude];
-    }
-}
-
 
 - (void)setNavigationBarButtons
 {
@@ -111,9 +99,9 @@
 
 - (IBAction)onSmalla:(id)sender
 {
-    double lon = [self.lonTextField.text doubleValue];
-    double lat = [self.latTextField.text doubleValue];
-    CLCircularRegion *region = [self registerGeoFenceWithLon:lon lat:lat];
+    CLLocationCoordinate2D coords = [[ECConfiguration instance] getHomeLocation];
+    
+    CLCircularRegion *region = [self registerGeoFenceWithLon:coords.longitude lat:coords.latitude];
     if (region == nil) {
         [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"No Geofencing for you!"];
     }
