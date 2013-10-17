@@ -27,12 +27,12 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"Your'e in the zone BROTHA"];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"Bye ;_;"];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:2];
 }
 
 - (IBAction)onSmalla:(id)sender
