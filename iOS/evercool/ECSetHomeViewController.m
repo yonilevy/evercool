@@ -10,7 +10,7 @@
 #import "ECConfiguration.h"
 #import "ECMultiAddressSelector.h"
 
-@interface ECSetHomeViewController ()
+@interface ECSetHomeViewController () <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) BOOL hasHome;
@@ -33,8 +33,8 @@
     region.center = coord;
 
     MKCoordinateSpan span;
-    span.latitudeDelta  = 0.1;
-    span.longitudeDelta = 0.1;
+    span.latitudeDelta  = 0.01;
+    span.longitudeDelta = 0.01;
     region.span = span;
 
     [self.mapView setRegion:region animated:YES];
@@ -87,8 +87,13 @@
 {
     self.lpgr = [[UILongPressGestureRecognizer alloc]
             initWithTarget:self action:@selector(handleLongPress:)];
+    self.lpgr.delegate = self;
     self.lpgr.minimumPressDuration = 1.0;
     [self.mapView addGestureRecognizer:self.lpgr];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
@@ -112,6 +117,7 @@
 {
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    self.mapView.showsUserLocation = YES;
     self.homeLocationAnnotation = [[MKPointAnnotation alloc] init];
     [self.locationManager startUpdatingLocation];
 }
