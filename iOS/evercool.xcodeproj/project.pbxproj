@@ -10,6 +10,8 @@
 		38AF51FD356339A507B258E6 /* ECUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AF5B790454F2C4E2E4B88E /* ECUtils.m */; };
 		38AF547F9214A9F27A2BF214 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF5232CC97EA51C6C855FC /* Icon@2x.png */; };
 		38AF579F7C7118D5DCDA1F06 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF532587BF939D51C3C7D2 /* Icon.png */; };
+		CC9631CD1810330400AC196F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC9631CC1810330400AC196F /* MapKit.framework */; };
+		CC9631D01810333E00AC196F /* ECSetHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC9631CF1810333E00AC196F /* ECSetHomeViewController.m */; };
 		E94485C7180FC8D0002C4719 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E94485C6180FC8D0002C4719 /* Foundation.framework */; };
 		E94485C9180FC8D0002C4719 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E94485C8180FC8D0002C4719 /* CoreGraphics.framework */; };
 		E94485CB180FC8D0002C4719 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E94485CA180FC8D0002C4719 /* UIKit.framework */; };
@@ -41,6 +43,9 @@
 		38AF532587BF939D51C3C7D2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		38AF5B790454F2C4E2E4B88E /* ECUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECUtils.m; sourceTree = "<group>"; };
 		38AF5D9784BB234E7D6BFD33 /* ECUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECUtils.h; sourceTree = "<group>"; };
+		CC9631CC1810330400AC196F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CC9631CE1810333E00AC196F /* ECSetHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSetHomeViewController.h; sourceTree = "<group>"; };
+		CC9631CF1810333E00AC196F /* ECSetHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSetHomeViewController.m; sourceTree = "<group>"; };
 		E94485C3180FC8D0002C4719 /* evercool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = evercool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94485C6180FC8D0002C4719 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E94485C8180FC8D0002C4719 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC9631CD1810330400AC196F /* MapKit.framework in Frameworks */,
 				E94485C9180FC8D0002C4719 /* CoreGraphics.framework in Frameworks */,
 				E94485CB180FC8D0002C4719 /* UIKit.framework in Frameworks */,
 				E94485C7180FC8D0002C4719 /* Foundation.framework in Frameworks */,
@@ -110,6 +116,7 @@
 		E94485C5180FC8D0002C4719 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC9631CC1810330400AC196F /* MapKit.framework */,
 				E94485C6180FC8D0002C4719 /* Foundation.framework */,
 				E94485C8180FC8D0002C4719 /* CoreGraphics.framework */,
 				E94485CA180FC8D0002C4719 /* UIKit.framework */,
@@ -130,6 +137,8 @@
 				E94485CD180FC8D0002C4719 /* Supporting Files */,
 				38AF5B790454F2C4E2E4B88E /* ECUtils.m */,
 				38AF5D9784BB234E7D6BFD33 /* ECUtils.h */,
+				CC9631CE1810333E00AC196F /* ECSetHomeViewController.h */,
+				CC9631CF1810333E00AC196F /* ECSetHomeViewController.m */,
 			);
 			path = evercool;
 			sourceTree = "<group>";
@@ -265,6 +274,7 @@
 			files = (
 				E94485DD180FC8D0002C4719 /* ECViewController.m in Sources */,
 				E94485D7180FC8D0002C4719 /* ECAppDelegate.m in Sources */,
+				CC9631D01810333E00AC196F /* ECSetHomeViewController.m in Sources */,
 				E94485D3180FC8D0002C4719 /* main.m in Sources */,
 				38AF51FD356339A507B258E6 /* ECUtils.m in Sources */,
 			);
@@ -475,6 +485,7 @@
 				E94485F7180FC8D1002C4719 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E94485F8180FC8D1002C4719 /* Build configuration list for PBXNativeTarget "evercoolTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +494,7 @@
 				E94485FA180FC8D1002C4719 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -24,6 +24,22 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     [super viewDidLoad];
 
     self.locationManager = [[CLLocationManager alloc] init];
+    [self setNavigationBarButtons];
+}
+
+
+- (void)setNavigationBarButtons
+{
+    self.navigationItem.title = @"Evercool";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Set Home"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(setHome)];
+}
+
+- (void)setHome
+{
+    [self performSegueWithIdentifier:@"setHomeSegue" sender:self];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
