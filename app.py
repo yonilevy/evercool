@@ -1,5 +1,7 @@
 import os
 from flask import Flask
+from flask import request
+import weather
 
 app = Flask(__name__)
 
@@ -40,6 +42,12 @@ def turn_on():
 def turn_off():
     set_current_command(TURN_OFF)
     return "turning off"
+
+@app.route('/current_weather')
+def current_weather():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+    return weather.get_weather(lat, lon)
 
 
 def get_current_command():
