@@ -39,6 +39,8 @@
     [self superButton:self.turnOnButton];
     [self superButton:self.turnOffButton];
 
+    self.currentWeatherLabel.font = [UIFont flatFontOfSize:64];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)superButton:(FUIButton *)button
