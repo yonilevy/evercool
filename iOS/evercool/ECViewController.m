@@ -67,7 +67,7 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 - (void)setNavigationBarButtons
 {
     self.navigationItem.title = @"Evercool";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Set Home"
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Set Home"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(setHome)];
