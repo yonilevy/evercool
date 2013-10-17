@@ -18,6 +18,13 @@
 
 @implementation ECViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.locationManager = [[CLLocationManager alloc] init];
+}
+
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"Your'e in the zone BROTHA"];
@@ -32,8 +39,6 @@
 {
     double lon = [self.lonTextField.text doubleValue];
     double lat = [self.latTextField.text doubleValue];
-    [ECUtils displayNotificationAlertWithTitle:@"Notice" message:
-            [NSString stringWithFormat:@"Registered fencing on\nlon: %f lat: %f", lon, lat]];
     BOOL didRegister = [self registerGeoFenceWithLon:lon lat:lat];
     if (didRegister) {
         [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"Geofencing activated"];
@@ -48,8 +53,8 @@
         return NO;
     }
 
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
+
+    self.locationManager.delegate = self;
 
     CLLocationDistance RADIUS_IN_METERS = 10.0;
     NSString *HOME_IDENTIFIER = @"home";
@@ -57,7 +62,7 @@
     center.latitude = lon;
     center.latitude = lat;
     CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:RADIUS_IN_METERS identifier:HOME_IDENTIFIER];
-    [locationManager startMonitoringForRegion:region];
+    [self.locationManager startMonitoringForRegion:region];
 
     return YES;
 }
