@@ -16,6 +16,7 @@ def turn_off():
 
 
 def poll():
+    print "starting to poll"
     while True:
         try:
             command = requests.get(BASE_URL + 'pop_command').content
@@ -23,6 +24,8 @@ def poll():
                 turn_on()
             elif command == 'TURN_OFF':
                 turn_off()
+            else:
+                print ".",
         except:
             print "had an exception, continuing"
             pass
