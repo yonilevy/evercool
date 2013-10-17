@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3097E1343B9E0E69385F4ED5 /* ECConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097E3ED290D3E1A74963704 /* ECConfiguration.m */; };
 		3097E9533A56319D172EE572 /* ECMultiAddressSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097EA2D0E4650F99829878E /* ECMultiAddressSelector.m */; };
+		38AF500B8C477FBC8A9E0188 /* ECServerApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AF56CD71F5D4658287E575 /* ECServerApi.m */; };
 		38AF51FD356339A507B258E6 /* ECUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AF5B790454F2C4E2E4B88E /* ECUtils.m */; };
 		38AF547F9214A9F27A2BF214 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF5232CC97EA51C6C855FC /* Icon@2x.png */; };
 		38AF579F7C7118D5DCDA1F06 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF532587BF939D51C3C7D2 /* Icon.png */; };
@@ -45,8 +46,11 @@
 		3097E3ED290D3E1A74963704 /* ECConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECConfiguration.m; sourceTree = "<group>"; };
 		3097EA2D0E4650F99829878E /* ECMultiAddressSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECMultiAddressSelector.m; sourceTree = "<group>"; };
 		3097EF95BEE9E091732A338C /* ECMultiAddressSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECMultiAddressSelector.h; sourceTree = "<group>"; };
+		38AF51928FFEF5B7AF722AD5 /* ECServerApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECServerApi.h; sourceTree = "<group>"; };
 		38AF5232CC97EA51C6C855FC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		38AF532587BF939D51C3C7D2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		38AF539729731824A290B823 /* ECConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECConsts.h; sourceTree = "<group>"; };
+		38AF56CD71F5D4658287E575 /* ECServerApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECServerApi.m; sourceTree = "<group>"; };
 		38AF5B790454F2C4E2E4B88E /* ECUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECUtils.m; sourceTree = "<group>"; };
 		38AF5D9784BB234E7D6BFD33 /* ECUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECUtils.h; sourceTree = "<group>"; };
 		CC9631CC1810330400AC196F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -149,6 +153,9 @@
 				3097E0228255254877B06950 /* ECConfiguration.h */,
 				3097EA2D0E4650F99829878E /* ECMultiAddressSelector.m */,
 				3097EF95BEE9E091732A338C /* ECMultiAddressSelector.h */,
+				38AF56CD71F5D4658287E575 /* ECServerApi.m */,
+				38AF51928FFEF5B7AF722AD5 /* ECServerApi.h */,
+				38AF539729731824A290B823 /* ECConsts.h */,
 			);
 			path = evercool;
 			sourceTree = "<group>";
@@ -289,6 +296,7 @@
 				38AF51FD356339A507B258E6 /* ECUtils.m in Sources */,
 				3097E1343B9E0E69385F4ED5 /* ECConfiguration.m in Sources */,
 				3097E9533A56319D172EE572 /* ECMultiAddressSelector.m in Sources */,
+				38AF500B8C477FBC8A9E0188 /* ECServerApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

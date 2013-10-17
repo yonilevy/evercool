@@ -10,8 +10,11 @@
 #import "ECViewController.h"
 #import "ECUtils.h"
 #import "ECConfiguration.h"
+#import "ECServerApi.h"
+#import "ECConsts.h"
 
-@interface ECViewController () <CLLocationManagerDelegate, UITextFieldDelegate>
+@interface ECViewController () <CLLocationManagerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *lonTextField;
 @property (weak, nonatomic) IBOutlet UITextField *latTextField;
 @property (weak, nonatomic) IBOutlet UILabel *currentWeatherLabel;
@@ -19,11 +22,10 @@
 
 @end
 
-static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
-
 @implementation ECViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     self.locationManager = [[CLLocationManager alloc] init];
@@ -38,11 +40,9 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 
 - (void)updateCurrentWeather
 {
-    NSString *urlPath = [NSString stringWithFormat:@"current_weather?lat=%@&lon=%@", self.latTextField.text, self.lonTextField.text];
-    NSString *currentWeather = [self doGet:[self serverUrl:urlPath]];
+    NSString *currentWeather = [ECServerApi getCurrentWeatherWithLat:self.latTextField.text lon:self.lonTextField.text];
 
     self.currentWeatherLabel.text = [currentWeather stringByAppendingString:@"°"];
-    NSLog(urlPath);
     NSLog(currentWeather);
 }
 
@@ -80,23 +80,33 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    [self displayLocalNotification:@"Entered region!"];
-    [self askServerToTurnOn];
+    if ([self isInForeground]) {
+        [self askUserWithCommand:ON_COMMAND];
+    } else {
+        [self displayLocalNotification:@"Tap to turn the AC on" command:ON_COMMAND];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    [self displayLocalNotification:@"Left region ;_;"];
-    [self askServerToTurnOff];
+    if ([self isInForeground]) {
+        [self askUserWithCommand:OFF_COMMAND];
+    } else {
+        [self displayLocalNotification:@"Tap to turn the AC off" command:OFF_COMMAND];
+    }
 }
 
-- (void)displayLocalNotification:(NSString *)text
+- (BOOL)isInForeground
+{
+    return [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+}
+
+- (void)displayLocalNotification:(NSString *)text command:(NSUInteger)command
 {
     UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
     notification.alertBody = text;
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    notification.userInfo = @{COMMAND_KEY: [NSNumber numberWithInt:command]};
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 - (IBAction)onSmalla:(id)sender
@@ -111,12 +121,12 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 
 - (IBAction)onTurnACOn:(id)sender
 {
-    [self askServerToTurnOn];
+    [ECServerApi turnACOn];
 }
 
 - (IBAction)onTurnACOff:(id)sender
 {
-    [self askServerToTurnOff];
+    [ECServerApi turnACOff];
 }
 
 - (CLCircularRegion *)registerGeoFenceWithLon:(double)lon lat:(double)lat
@@ -138,32 +148,31 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     return region;
 }
 
-- (void)askServerToTurnOn
+- (void)askUserWithCommand:(NSUInteger)command
 {
-    [self doGet:[self serverUrl:@"turn_on"]];
+    UIAlertView *alert = [[UIAlertView alloc] init];
+    [alert setTitle:@"Confirm"];
+    if (command == ON_COMMAND) {
+        [alert setMessage:@"Would you like to turn the AC on?"];
+    } else {
+        [alert setMessage:@"Would you like to turn the AC off?"];
+    }
+    [alert setDelegate:self];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:@"No"];
+    alert.tag = command;
+    [alert show];
 }
 
-- (void)askServerToTurnOff
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self doGet:[self serverUrl:@"turn_off"]];
-}
+    if (buttonIndex != 0) return;
 
-- (NSString *)doGet:(NSString *)url
-{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
-                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                            timeoutInterval:60.0];
-
-
-    NSURLResponse* response = nil;
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
-
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-}
-
-- (NSString *)serverUrl:(NSString *)path
-{
-    return [NSString stringWithFormat:@"%@%@", BASE_URL, path];
+    if (alertView.tag == ON_COMMAND) {
+        [ECServerApi turnACOn];
+    } else {
+        [ECServerApi turnACOff];
+    }
 }
 
 - (IBAction)textDidEndEditing:(id)sender
