@@ -16,6 +16,8 @@
 
 @end
 
+static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
+
 @implementation ECViewController
 
 - (void)viewDidLoad {
@@ -28,12 +30,14 @@
 {
     [self displayLocalNotification:@"Entered region!"];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [self askServerToTurnOn];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     [self displayLocalNotification:@"Left region ;_;"];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:2];
+    [self askServerToTurnOff];
 }
 
 - (void)displayLocalNotification:(NSString *)text
@@ -55,6 +59,16 @@
     } else {
         [self.locationManager requestStateForRegion:region];
     }
+}
+
+- (IBAction)onTurnACOn:(id)sender
+{
+    [self askServerToTurnOn];
+}
+
+- (IBAction)onTurnACOff:(id)sender
+{
+    [self askServerToTurnOff];
 }
 
 - (CLCircularRegion *)registerGeoFenceWithLon:(double)lon lat:(double)lat
@@ -82,6 +96,31 @@
 {
     [ECUtils displayNotificationAlertWithTitle:@"Notice"
                                        message:[NSString stringWithFormat:@"region state: %d!", state]];
+}
+
+- (void)askServerToTurnOn
+{
+    [self doGet:[self serverUrl:@"turn_on"]];
+}
+
+- (void)askServerToTurnOff
+{
+    [self doGet:[self serverUrl:@"turn_off"]];
+}
+
+- (void)doGet:(NSString *)url {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                            timeoutInterval:60.0];
+
+
+    NSURLResponse* response = nil;
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+}
+
+- (NSString *)serverUrl:(NSString *)path
+{
+    return [NSString stringWithFormat:@"%@%@", BASE_URL, path];
 }
 
 
