@@ -128,4 +128,16 @@
     [[ECConfiguration instance] setHomeLocationTo:placemark.location.coordinate];
     [self setHomeLocationTo:placemark.location.coordinate];
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([self.searchBar isFirstResponder] && [touch view] != self.searchBar) {
+        [self.searchBar resignFirstResponder];
+    }
+
+}
+
 @end
