@@ -231,7 +231,7 @@
 				ORGANIZATIONNAME = Evercool;
 				TargetAttributes = {
 					E94485E3180FC8D0002C4719 = {
-						TestTargetID = E94485C2180FC8D0002C4719 /* evercool */;
+						TestTargetID = E94485C2180FC8D0002C4719;
 					};
 				};
 			};
