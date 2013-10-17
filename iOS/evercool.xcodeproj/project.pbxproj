@@ -12,6 +12,7 @@
 		38AF500B8C477FBC8A9E0188 /* ECServerApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AF56CD71F5D4658287E575 /* ECServerApi.m */; };
 		38AF51FD356339A507B258E6 /* ECUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AF5B790454F2C4E2E4B88E /* ECUtils.m */; };
 		38AF547F9214A9F27A2BF214 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF5232CC97EA51C6C855FC /* Icon@2x.png */; };
+		38AF55008CBE9E8389361A66 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF570DD07BC17F0E6D0496 /* home.png */; };
 		38AF579F7C7118D5DCDA1F06 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AF532587BF939D51C3C7D2 /* Icon.png */; };
 		8C267D4365CE40C5850724D3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F82239101FEE42CCA2A3E8FB /* libPods.a */; };
 		CC9631CD1810330400AC196F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC9631CC1810330400AC196F /* MapKit.framework */; };
@@ -54,6 +55,7 @@
 		38AF532587BF939D51C3C7D2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		38AF539729731824A290B823 /* ECConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECConsts.h; sourceTree = "<group>"; };
 		38AF56CD71F5D4658287E575 /* ECServerApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECServerApi.m; sourceTree = "<group>"; };
+		38AF570DD07BC17F0E6D0496 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		38AF5B790454F2C4E2E4B88E /* ECUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECUtils.m; sourceTree = "<group>"; };
 		38AF5D9784BB234E7D6BFD33 /* ECUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECUtils.h; sourceTree = "<group>"; };
 		CC9631CC1810330400AC196F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -165,6 +167,7 @@
 				38AF56CD71F5D4658287E575 /* ECServerApi.m */,
 				38AF51928FFEF5B7AF722AD5 /* ECServerApi.h */,
 				38AF539729731824A290B823 /* ECConsts.h */,
+				38AF570DD07BC17F0E6D0496 /* home.png */,
 			);
 			path = evercool;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				38AF547F9214A9F27A2BF214 /* Icon@2x.png in Resources */,
 				E9DE856918107D67008147A4 /* background@2x.png in Resources */,
 				38AF579F7C7118D5DCDA1F06 /* Icon.png in Resources */,
+				38AF55008CBE9E8389361A66 /* home.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

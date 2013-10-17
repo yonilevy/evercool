@@ -28,6 +28,12 @@
 
 @implementation ECViewController
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,6 +45,7 @@
     [self superButton:self.turnOnButton];
     [self superButton:self.turnOffButton];
 
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)superButton:(FUIButton *)button
@@ -73,11 +80,19 @@
 
 - (void)setNavigationBarButtons
 {
-    self.navigationItem.title = @"Evercool";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Set Home"
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(setHome)];
+    self.navigationItem.title = @"";
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc]
+                initWithImage:[UIImage imageNamed:@"home"]
+                        style:UIBarButtonItemStylePlain
+                       target:self
+                       action:@selector(setHome)];
+    self.navigationItem.rightBarButtonItem = barButton;
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 
 - (void)setHome
