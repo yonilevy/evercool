@@ -9,6 +9,16 @@ checks the weather, and turns on the AC automatically for you at just the right 
 
 It works by having a raspberry pi connected to an IR LED which can control your AC.
 
+## What you need
+* RaspberryPi with LIRC compiled
+* Airconditioner / Fan with an IR remote control
+* IR Receiver
+* IR Transmitter
+* Transistors and resistors
+* Cables
+* a bit of iOS knowledge
+* a bit of Python knowledge
+* high trolling ability
 
 ## What we did to get it working
 
