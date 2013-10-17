@@ -9,6 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ECViewController.h"
 #import "ECUtils.h"
+#import "ECConfiguration.h"
 
 @interface ECViewController () <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *lonTextField;
@@ -25,6 +26,22 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 
     self.locationManager = [[CLLocationManager alloc] init];
     [self setNavigationBarButtons];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self setHomeLocation];
+}
+
+
+- (void)setHomeLocation
+{
+    if ([[ECConfiguration instance] hasHome]) {
+        CLLocationCoordinate2D homeLocation = [[ECConfiguration instance] getHomeLocation];
+        self.latTextField.text = [NSString stringWithFormat:@"%f", homeLocation.latitude];
+        self.lonTextField.text = [NSString stringWithFormat:@"%f", homeLocation.longitude];
+    }
 }
 
 
