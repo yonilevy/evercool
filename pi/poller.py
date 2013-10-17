@@ -1,6 +1,7 @@
 import requests
 import time
 import os
+import sys
 
 BASE_URL = 'http://infinite-fortress-1821.herokuapp.com/'
 
@@ -25,7 +26,8 @@ def poll():
             elif command == 'TURN_OFF':
                 turn_off()
             else:
-                print ".",
+                sys.stdout.write('.')
+                sys.stdout.flush()
         except:
             print "had an exception, continuing"
             pass
