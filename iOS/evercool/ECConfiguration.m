@@ -31,6 +31,7 @@ static ECConfiguration *_instance = nil;
 
 - (void)setHomeLocationTo:(CLLocationCoordinate2D)coordinate2D
 {
+    NSLog(@"Saving new home to %f %f", coordinate2D.latitude, coordinate2D.longitude);
     [[NSUserDefaults standardUserDefaults] setDouble:coordinate2D.longitude forKey:@"eclong"];
     [[NSUserDefaults standardUserDefaults] setDouble:coordinate2D.latitude forKey:@"eclat"];
 }

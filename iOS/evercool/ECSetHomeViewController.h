@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface ECSetHomeViewController : UIViewController <CLLocationManagerDelegate>
+@class ECMultiAddressSelector;
+
+@interface ECSetHomeViewController : UIViewController <CLLocationManagerDelegate, UISearchBarDelegate>
 
 @property(nonatomic, strong) CLLocationManager *locationManager;
 @property(nonatomic, strong) UILongPressGestureRecognizer *lpgr;
-@property(nonatomic) CLLocationDegrees eclong;
-@property(nonatomic) CLLocationDegrees eclat;
 @property(nonatomic, strong) MKPointAnnotation *homeLocationAnnotation;
+@property(nonatomic, strong) CLGeocoder *geocoder;
+@property(nonatomic, strong) ECMultiAddressSelector *addressSelector;
+
+- (void)setAddressTo:(id)o;
 @end

@@ -8,8 +8,10 @@
 
 #import "ECSetHomeViewController.h"
 #import "ECConfiguration.h"
+#import "ECMultiAddressSelector.h"
 
 @interface ECSetHomeViewController ()
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic) BOOL hasHome;
 @end
@@ -23,7 +25,7 @@
     region.center = [locations[0] coordinate];
 
     MKCoordinateSpan span;
-    span.latitudeDelta  = 0.1; // Change these values to change the zoom
+    span.latitudeDelta  = 0.1;
     span.longitudeDelta = 0.1;
     region.span = span;
 
@@ -49,7 +51,8 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"Set Home";
-
+    self.searchBar.delegate = self;
+    self.geocoder = [[CLGeocoder alloc] init];
 
     [self setMapAndLocation];
     [self loadSavedHome];
@@ -66,6 +69,7 @@
 
 - (void)setHomeLocationTo:(CLLocationCoordinate2D)homeLocation
 {
+    NSLog(@"Setting home location to long %f lat %f", homeLocation.longitude, homeLocation.latitude);
     self.homeLocationAnnotation.coordinate = homeLocation;
     if (!self.hasHome) {
         self.hasHome = YES;
@@ -106,4 +110,22 @@
     [self.locationManager startUpdatingLocation];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+
+    [self.geocoder geocodeAddressString:searchBar.text completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"Got response %@", placemarks);
+
+        self.addressSelector = [[ECMultiAddressSelector alloc] init];
+        [self.addressSelector showAlertForAddresses:placemarks inView:self.view withDelegate:self];
+
+    }];
+}
+
+- (void)setAddressTo:(CLPlacemark *)placemark
+{
+    [[ECConfiguration instance] setHomeLocationTo:placemark.location.coordinate];
+    [self setHomeLocationTo:placemark.location.coordinate];
+}
 @end

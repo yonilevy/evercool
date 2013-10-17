@@ -30,7 +30,7 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     [self setHomeLocation];
 }
 
