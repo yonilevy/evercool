@@ -10,7 +10,7 @@ checks the weather, and turns on the AC automatically for you at just the right 
 It works by having a raspberry pi connected to an IR LED which can control your AC.
 
 
-## Steps
+## What we did to get it working
 
 ### Connect the IR receiver / transmitter circuit to the breadboard
 The first step is to wire the IR receiver / transmitter circuit to your RaspberryPi.
@@ -127,5 +127,22 @@ irsend SEND_ONCE BTN_0
 
 If everything worked you should get a working ventilator :) woohoo! If something went bad we highly recommend that you follow the guides we referenced, they are more than enough to get everything working.
 
+### iOS Client
+#### Geo-fencing
+We've used geo-fencing to set and detect entrance to the user "home location".
+Apple provides pretty straight-forward APIs for doing this, we used the following classes to get everything up -
+* MKMapView - Displaying and selecting the home location
+* CLLocationManager - for the actual geographical region changes
+* UIApplication / presentLocalNotificationNow - for showing local push notifications to the user
+* NSURLConnection - for server side communication and the actual control the the RaspberryPi
+* Yahoo weather for local temperature measurement and thresholding
+
+You can always look at the source code if you have any questions on the actual implementation :)
+
+### Server Side
+#### Heroku Flusk / Gunicorn application
+We've chosen the combination of Flusk & Gunicorn deployed on heroku for the server side.
+The server is pretty simple - the RaspberryPi polls the server every second for commands, the iOS client updates the server when the AC/Fan needs to start or stop.
 
 
+## That's it!
