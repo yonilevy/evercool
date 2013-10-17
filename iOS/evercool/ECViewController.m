@@ -146,15 +146,15 @@
         [alert setMessage:@"Would you like to turn the AC off?"];
     }
     [alert setDelegate:self];
-    [alert addButtonWithTitle:@"Yes"];
     [alert addButtonWithTitle:@"No"];
+    [alert addButtonWithTitle:@"Yes"];
     alert.tag = command;
     [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex != 0) return;
+    if (buttonIndex != 1) return;
 
     if (alertView.tag == ON_COMMAND) {
         [ECServerApi turnACOn];
