@@ -24,7 +24,6 @@
     self.locationManager = [[CLLocationManager alloc] init];
 }
 
-
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
@@ -39,20 +38,19 @@
 {
     double lon = [self.lonTextField.text doubleValue];
     double lat = [self.latTextField.text doubleValue];
-    BOOL didRegister = [self registerGeoFenceWithLon:lon lat:lat];
-    if (didRegister) {
-        [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"Geofencing activated"];
-    } else {
+    CLCircularRegion *region = [self registerGeoFenceWithLon:lon lat:lat];
+    if (region == nil) {
         [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"No Geofencing for you!"];
+    } else {
+        [self.locationManager requestStateForRegion:region];
     }
 }
 
-- (BOOL)registerGeoFenceWithLon:(double)lon lat:(double)lat 
+- (CLCircularRegion *)registerGeoFenceWithLon:(double)lon lat:(double)lat
 {
     if (![CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-        return NO;
+        return nil;
     }
-
 
     self.locationManager.delegate = self;
 
@@ -64,7 +62,16 @@
     CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:RADIUS_IN_METERS identifier:HOME_IDENTIFIER];
     [self.locationManager startMonitoringForRegion:region];
 
-    return YES;
+    return region;
 }
+
+- (void)locationManager:(CLLocationManager *)manager
+      didDetermineState:(CLRegionState)state
+              forRegion:(CLRegion *)region
+{
+    [ECUtils displayNotificationAlertWithTitle:@"Notice"
+                                       message:[NSString stringWithFormat:@"region state: %d!", state]];
+}
+
 
 @end
