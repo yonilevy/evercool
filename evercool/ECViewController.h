@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECViewController.h"
 
-@interface ECViewController : UIViewController
+@interface ECViewController : UIViewController <CLLocationManagerDelegate>
 
 @end
