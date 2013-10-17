@@ -121,18 +121,34 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Weather" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoZ-f6-L6f">
-                                <rect key="frame" x="97" y="407" width="126" height="21"/>
+                                <rect key="frame" x="97" y="319" width="126" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuw-Ka-2Zv">
-                                <rect key="frame" x="124" y="436" width="72" height="21"/>
+                                <rect key="frame" x="124" y="348" width="72" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn on AC when temperature is above" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFE-Al-7rP">
+                                <rect key="frame" x="11" y="377" width="299" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P4Y-8m-VS9">
+                                <rect key="frame" x="112" y="406" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textDidEndEditing:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="0AT-cp-FKx"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="P9M-F5-DH0"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -141,6 +157,7 @@
                         <outlet property="currentWeatherLabel" destination="Zuw-Ka-2Zv" id="fUs-am-a7k"/>
                         <outlet property="latTextField" destination="dDA-2m-N0U" id="leb-SK-bs4"/>
                         <outlet property="lonTextField" destination="4Ew-3F-7HA" id="cw2-OD-BK6"/>
+                        <outlet property="thresholdTextField" destination="P4Y-8m-VS9" id="fNn-hM-Miy"/>
                         <segue destination="3gn-Os-KY2" kind="push" identifier="setHomeSegue" id="H8L-cE-uH3"/>
                     </connections>
                 </viewController>

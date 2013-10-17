@@ -11,10 +11,11 @@
 #import "ECUtils.h"
 #import "ECConfiguration.h"
 
-@interface ECViewController () <CLLocationManagerDelegate>
+@interface ECViewController () <CLLocationManagerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *lonTextField;
 @property (weak, nonatomic) IBOutlet UITextField *latTextField;
 @property (weak, nonatomic) IBOutlet UILabel *currentWeatherLabel;
+@property (weak, nonatomic) IBOutlet UITextField *thresholdTextField;
 
 @end
 
@@ -27,6 +28,12 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 
     self.locationManager = [[CLLocationManager alloc] init];
     [self setNavigationBarButtons];
+    [self setThresholdTemperature];
+}
+
+- (void)setThresholdTemperature
+{
+    self.thresholdTextField.text = [[ECConfiguration instance] getThresholdTemp];
 }
 
 - (void)updateCurrentWeather
@@ -159,5 +166,30 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     return [NSString stringWithFormat:@"%@%@", BASE_URL, path];
 }
 
+- (IBAction)textDidEndEditing:(id)sender
+{
+    NSLog(@"Setting threshold temp to %@", self.thresholdTextField.text);
+
+    [[ECConfiguration instance] setThresholdTemperatureTo:self.thresholdTextField.text];
+    [self.thresholdTextField resignFirstResponder];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([[touch view] isKindOfClass:[UITextField class]]) {
+        return;
+    }
+
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

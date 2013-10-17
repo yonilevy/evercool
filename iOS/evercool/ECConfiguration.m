@@ -39,4 +39,15 @@ static ECConfiguration *_instance = nil;
 - (BOOL)hasHome {
     return YES;
 }
+
+- (NSString *)getThresholdTemp
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"thresholdTemperature"];
+}
+
+- (void)setThresholdTemperatureTo:(NSString *)thresholdTemperature
+{
+    [[NSUserDefaults standardUserDefaults] setObject:thresholdTemperature forKey:@"thresholdTemperature"];
+}
+
 @end

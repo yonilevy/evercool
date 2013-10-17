@@ -144,7 +144,6 @@
     if ([self.searchBar isFirstResponder] && [touch view] != self.searchBar) {
         [self.searchBar resignFirstResponder];
     }
-
 }
 
 @end

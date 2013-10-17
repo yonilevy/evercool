@@ -16,4 +16,8 @@
 - (void)setHomeLocationTo:(CLLocationCoordinate2D)coordinate2D;
 
 - (BOOL)hasHome;
+
+- (NSString *)getThresholdTemp;
+
+- (void)setThresholdTemperatureTo:(NSString *)text;
 @end
