@@ -21,8 +21,16 @@
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations
 {
+    CLLocationCoordinate2D coord = [locations[0] coordinate];
+
+    [self showCoordInMap:coord];
+
+    [self.locationManager stopUpdatingLocation];
+}
+
+- (void)showCoordInMap:(CLLocationCoordinate2D)coord {
     MKCoordinateRegion region;
-    region.center = [locations[0] coordinate];
+    region.center = coord;
 
     MKCoordinateSpan span;
     span.latitudeDelta  = 0.1;
@@ -30,8 +38,6 @@
     region.span = span;
 
     [self.mapView setRegion:region animated:YES];
-
-    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -127,12 +133,13 @@
 {
     [[ECConfiguration instance] setHomeLocationTo:placemark.location.coordinate];
     [self setHomeLocationTo:placemark.location.coordinate];
+    [self showCoordInMap:placemark.location.coordinate];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    
+
     UITouch *touch = [[event allTouches] anyObject];
     if ([self.searchBar isFirstResponder] && [touch view] != self.searchBar) {
         [self.searchBar resignFirstResponder];
