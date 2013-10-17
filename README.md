@@ -146,3 +146,21 @@ The server is pretty simple - the RaspberryPi polls the server every second for 
 
 
 ## That's it!
+
+### About us -
+
+#### Yoni "Yoni" Levy
+Trolling hacker #1
+LinkedIn - http://www.linkedin.com/profile/view?id=11573714
+
+#### David "David" Brailovsky
+Trolling hacker #2
+LinkedIn - http://www.linkedin.com/profile/view?id=26808139
+
+#### Nimrod "Guti" Gutman
+Trolling hacker #3
+LinkedIn - http://lnkd.in/2ET56b
+
+### Some more pictures of us hacking
+![](https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/13432/91327/vl9xy8mKymhs00X/IMG_2026.png)
+![](https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/13432/91327/p3rtb7SE2OkyDmC/IMG_2024.png)
