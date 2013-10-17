@@ -14,6 +14,7 @@
 @interface ECViewController () <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *lonTextField;
 @property (weak, nonatomic) IBOutlet UITextField *latTextField;
+@property (weak, nonatomic) IBOutlet UILabel *currentWeatherLabel;
 
 @end
 
@@ -28,10 +29,21 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     [self setNavigationBarButtons];
 }
 
+- (void)updateCurrentWeather
+{
+    NSString *urlPath = [NSString stringWithFormat:@"current_weather?lat=%@&lon=%@", self.latTextField.text, self.lonTextField.text];
+    NSString *currentWeather = [self doGet:[self serverUrl:urlPath]];
+
+    self.currentWeatherLabel.text = [currentWeather stringByAppendingString:@"°"];
+    NSLog(urlPath);
+    NSLog(currentWeather);
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
     [self setHomeLocation];
+    [self updateCurrentWeather];
 }
 
 
@@ -129,7 +141,8 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
     [self doGet:[self serverUrl:@"turn_off"]];
 }
 
-- (void)doGet:(NSString *)url {
+- (NSString *)doGet:(NSString *)url
+{
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                                             timeoutInterval:60.0];
@@ -137,6 +150,8 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 
     NSURLResponse* response = nil;
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)serverUrl:(NSString *)path
