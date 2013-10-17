@@ -164,3 +164,4 @@ LinkedIn - http://lnkd.in/2ET56b
 ### Some more pictures of us hacking
 ![](https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/13432/91327/vl9xy8mKymhs00X/IMG_2026.png)
 ![](https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/13432/91327/p3rtb7SE2OkyDmC/IMG_2024.png)
+![](https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/13432/91327/UHYTzXFhfDBPVB5/IMG_2029-2.png)
