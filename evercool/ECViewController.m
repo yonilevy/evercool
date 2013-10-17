@@ -67,10 +67,10 @@
 
     CLLocationDistance RADIUS_IN_METERS = 10.0;
     NSString *HOME_IDENTIFIER = @"home";
-    CLLocationCoordinate2D center;
-    center.latitude = lon;
-    center.latitude = lat;
-    CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:RADIUS_IN_METERS identifier:HOME_IDENTIFIER];
+    CLCircularRegion *region = [[CLCircularRegion alloc]
+            initWithCenter:CLLocationCoordinate2DMake(lat, lon)
+                    radius:RADIUS_IN_METERS
+                identifier:HOME_IDENTIFIER];
     [self.locationManager startMonitoringForRegion:region];
 
     return region;
