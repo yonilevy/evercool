@@ -12,11 +12,16 @@
 #import "ECConfiguration.h"
 #import "ECServerApi.h"
 #import "ECConsts.h"
+#import "FUIButton.h"
+#import "UIColor+FlatUI.h"
+#import "UIFont+FlatUI.h"
 
 @interface ECViewController () <CLLocationManagerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentWeatherLabel;
 @property (weak, nonatomic) IBOutlet UITextField *thresholdTextField;
+@property (weak, nonatomic) IBOutlet FUIButton *turnOnButton;
+@property (weak, nonatomic) IBOutlet FUIButton *turnOffButton;
 
 @end
 
@@ -29,6 +34,19 @@
     self.locationManager = [[CLLocationManager alloc] init];
     [self setNavigationBarButtons];
     [self setThresholdTemperature];
+
+    [self superButton:self.turnOnButton];
+    [self superButton:self.turnOffButton];
+
+}
+
+- (void)superButton:(FUIButton *)button
+{
+    button.buttonColor = [UIColor cloudsColor];
+    button.shadowColor = [UIColor cloudsColor];
+    button.shadowHeight = 3.0f;
+    button.cornerRadius = 6.0f;
+    button.titleLabel.font = [UIFont flatFontOfSize:16];
 }
 
 - (void)setThresholdTemperature
