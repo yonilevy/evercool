@@ -22,6 +22,7 @@ def hello():
     <a href="turn_on">turn on</a><br>
     <a href="turn_off">turn off</a><br>
     <a href="pop_command">pop command</a><br>
+    <a href="current_weather?lat=32.0591&lon=34.7619">current weather</a><br>
     """ % command
 
 
