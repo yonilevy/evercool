@@ -10,7 +10,7 @@
 #import "ECViewController.h"
 #import "ECUtils.h"
 
-@interface ECViewController ()
+@interface ECViewController () <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *lonTextField;
 @property (weak, nonatomic) IBOutlet UITextField *latTextField;
 
@@ -26,12 +26,23 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
+    [self displayLocalNotification:@"Entered region!"];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
+    [self displayLocalNotification:@"Left region ;_;"];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:2];
+}
+
+- (void)displayLocalNotification:(NSString *)text
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    notification.alertBody = text;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 - (IBAction)onSmalla:(id)sender

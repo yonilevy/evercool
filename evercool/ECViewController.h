@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Evercool. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 #import "ECViewController.h"
 
-@interface ECViewController : UIViewController <CLLocationManagerDelegate>
+@interface ECViewController : UIViewController;
 
 @property(nonatomic, strong) CLLocationManager *locationManager;
 @end
