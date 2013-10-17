@@ -29,14 +29,12 @@ static NSString *BASE_URL = @"http://infinite-fortress-1821.herokuapp.com/";
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     [self displayLocalNotification:@"Entered region!"];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
     [self askServerToTurnOn];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     [self displayLocalNotification:@"Left region ;_;"];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:2];
     [self askServerToTurnOff];
 }
 
