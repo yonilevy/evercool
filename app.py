@@ -23,6 +23,7 @@ def hello():
     <a href="turn_off">turn off</a><br>
     <a href="pop_command">pop command</a><br>
     <a href="current_weather?lat=32.0591&lon=34.7619">current weather</a><br>
+    <a href="turn_on_if_above_threshold?lat=32.0591&lon=34.7619&threshold=999">turn on if above threshold</a><br>
     """ % command
 
 
@@ -49,6 +50,18 @@ def current_weather():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
     return weather.get_weather(lat, lon)
+
+
+@app.route('/turn_on_if_above_threshold')
+def turn_on_if_above_threshold():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+    threshold = request.args.get('threshold')
+    current_weather = weather.get_weather(lat, lon)
+    if current_weather >= threshold:
+        turn_on()
+        return "turning on. weather is %s threshold is %s" % (current_weather, threshold)
+    return "not turning on. weather is %s threshold is %s" % (current_weather, threshold)
 
 
 def get_current_command():
