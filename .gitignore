@@ -8,3 +8,5 @@ venv
 *.pyc
 .venv
 *.iml
+
+out/
