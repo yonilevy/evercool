@@ -164,9 +164,9 @@ The server is pretty simple - the RaspberryPi polls the server every second for 
 Trolling hacker #1
 LinkedIn - http://www.linkedin.com/profile/view?id=11573714
 
-#### David "David" Brailovsky
+#### David Brailovsky
 Trolling hacker #2
-LinkedIn - http://www.linkedin.com/profile/view?id=26808139
+https://github.com/davidbrai
 
 #### Nimrod "Guti" Gutman
 Trolling hacker #3
