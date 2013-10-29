@@ -41,6 +41,7 @@
 
     self.currentWeatherLabel.font = [UIFont flatFontOfSize:64];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    self.evercoolSwitch.on = [[ECConfiguration instance] isGeofencing];
 }
 
 - (void)superButton:(FUIButton *)button
@@ -223,14 +224,17 @@
 - (IBAction)evercoolSwitchChanged:(id)sender
 {
     CLLocationCoordinate2D coords = [[ECConfiguration instance] getHomeLocation];
-    if (self.evercoolSwitch.on) {
+    if (self.evercoolSwitch.isOn) {
         CLCircularRegion *region = [self registerGeoFenceWithLon:coords.longitude lat:coords.latitude];
         if (region == nil) {
             [ECUtils displayNotificationAlertWithTitle:@"Notice" message:@"No Geofencing for you!"];
         }
+        NSLog(@"Turned on geofencing");
     } else {
         [self.locationManager stopMonitoringForRegion:[self getRegionForLong:coords.longitude lat:coords.latitude]];
+        NSLog(@"Turned off geofencing");
     }
+    [[ECConfiguration instance] setIsGeofencing:self.evercoolSwitch.isOn];
 }
 
 @end

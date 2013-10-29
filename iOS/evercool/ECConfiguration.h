@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+static NSString *const IS_GEOFENCING_KEY = @"isGeofencing";
+
 @interface ECConfiguration : NSObject
 
 + (ECConfiguration *)instance;
@@ -20,4 +22,8 @@
 - (NSString *)getThresholdTemp;
 
 - (void)setThresholdTemperatureTo:(NSString *)text;
+
+- (void)setIsGeofencing:(BOOL)isGeofencing;
+
+- (BOOL)isGeofencing;
 @end

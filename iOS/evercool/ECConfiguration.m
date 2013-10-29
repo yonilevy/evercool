@@ -50,4 +50,14 @@ static ECConfiguration *_instance = nil;
     [[NSUserDefaults standardUserDefaults] setObject:thresholdTemperature forKey:@"thresholdTemperature"];
 }
 
+- (void)setIsGeofencing:(BOOL)isGeofencing
+{
+    [[NSUserDefaults standardUserDefaults] setBool:isGeofencing forKey:IS_GEOFENCING_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)isGeofencing
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:IS_GEOFENCING_KEY];
+}
 @end
