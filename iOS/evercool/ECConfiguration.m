@@ -34,6 +34,7 @@ static ECConfiguration *_instance = nil;
     NSLog(@"Saving new home to %f %f", coordinate2D.latitude, coordinate2D.longitude);
     [[NSUserDefaults standardUserDefaults] setDouble:coordinate2D.longitude forKey:@"eclong"];
     [[NSUserDefaults standardUserDefaults] setDouble:coordinate2D.latitude forKey:@"eclat"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (BOOL)hasHome {
@@ -48,6 +49,7 @@ static ECConfiguration *_instance = nil;
 - (void)setThresholdTemperatureTo:(NSString *)thresholdTemperature
 {
     [[NSUserDefaults standardUserDefaults] setObject:thresholdTemperature forKey:@"thresholdTemperature"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setIsGeofencing:(BOOL)isGeofencing
