@@ -132,6 +132,7 @@
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.alertBody = text;
     notification.userInfo = @{COMMAND_KEY: [NSNumber numberWithInt:command]};
+    notification.soundName = UILocalNotificationDefaultSoundName;
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
