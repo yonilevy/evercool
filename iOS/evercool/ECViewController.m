@@ -33,6 +33,9 @@
     [super viewDidLoad];
 
     self.locationManager = [[CLLocationManager alloc] init];
+    [self turnOnGeofencingIfNeeded];
+
+
     [self setNavigationBarButtons];
     [self setThresholdTemperature];
 
@@ -42,6 +45,17 @@
     self.currentWeatherLabel.font = [UIFont flatFontOfSize:64];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.evercoolSwitch.on = [[ECConfiguration instance] isGeofencing];
+}
+
+- (void)turnOnGeofencingIfNeeded
+{
+    // We need to register for geo-fencing again in case app was killed
+    if ([[ECConfiguration instance] isGeofencing]) {
+        CLLocationCoordinate2D coords = [[ECConfiguration instance] getHomeLocation];
+        if (coords.longitude || coords.longitude) {
+            [self registerGeoFenceWithLon:coords.longitude lat:coords.latitude];
+        }
+    }
 }
 
 - (void)superButton:(FUIButton *)button
@@ -65,13 +79,15 @@
                                                                  lon:coords.longitude];
 
     self.currentWeatherLabel.text = [currentWeather stringByAppendingString:@"°"];
-    NSLog(currentWeather);
+    NSLog(@"Weather: %@", currentWeather);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
     [self updateCurrentWeather];
+
+    NSLog(@"Monitored regions: %@", self.locationManager.monitoredRegions);
 }
 
 - (void)setNavigationBarButtons
@@ -106,6 +122,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
+    NSLog(@"didEnterRegion: %@", region);
     if ([self isInForeground]) {
         [self askUserWithCommand:ON_COMMAND];
     } else {
@@ -115,6 +132,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
+    NSLog(@"didExitRegion: %@", region);
     if ([self isInForeground]) {
         [self askUserWithCommand:OFF_COMMAND];
     } else {
@@ -148,6 +166,7 @@
 
 - (CLCircularRegion *)registerGeoFenceWithLon:(double)lon lat:(double)lat
 {
+    NSLog(@"Registering geo-fencing with lon: %f lat: %f", lon, lat);
     if (![CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
         return nil;
     }
