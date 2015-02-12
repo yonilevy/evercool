@@ -151,8 +151,8 @@ Apple provides pretty straight-forward APIs for doing this, we used the followin
 You can always look at the source code if you have any questions on the actual implementation :)
 
 ### Server Side
-#### Heroku Flusk / Gunicorn application
-We've chosen the combination of Flusk & Gunicorn deployed on heroku for the server side.
+#### Heroku Flask / Gunicorn application
+We've chosen the combination of Flask & Gunicorn deployed on heroku for the server side.
 The server is pretty simple - the RaspberryPi polls the server every second for commands, the iOS client updates the server when the AC/Fan needs to start or stop.
 
 
